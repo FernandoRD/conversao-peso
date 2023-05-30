@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: deploy-convpeso
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: convpeso
+  template:
+    metadata:
+      labels:
+        app: convpeso
+    spec:
+      containers:
+      - name: peso
+        image: fernandord/conversao-peso:latest
+        resources:
+          limits:
+            memory: "256Mi"
+            cpu: "500m"
+        ports:
+          - containerPort: 80
+            name: porta
+
